@@ -7,6 +7,7 @@
 #include <mutex>
 #include <atomic>
 
+//Type of synchronization - atomic object
 namespace Multithreading
 {
 	constexpr long long size = 1000000;
