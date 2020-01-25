@@ -10,8 +10,6 @@
 //Type of synchronization - atomic object
 namespace Multithreading
 {
-	constexpr long long size = 1000000;
-
 	//Every thread executes calculateSum with different portion of the data (vector<int> elements)
 	void calculateSum(std::atomic<long long>& sum, const std::vector<int>& elements, long long begin, long long end)
 	{
@@ -26,10 +24,11 @@ namespace Multithreading
 
 int main()
 {
+	constexpr long long size = 1000000;
 	std::vector<int> elements;
-	elements.reserve(Multithreading::size);
+	elements.reserve(size);
 
-	for (int i = 0; i < Multithreading::size; i++)
+	for (int i = 0; i < size; i++)
 	{
 		elements.push_back(i + 1);
 	}
@@ -38,7 +37,7 @@ int main()
 	std::atomic< long long> sum = 0;
 
 	int threadNumber = std::thread::hardware_concurrency();
-	double step = (double)Multithreading::size / threadNumber;
+	double step = (double)size / threadNumber;
 	std::vector<std::thread> allThreads;
 	allThreads.reserve(threadNumber);
 
